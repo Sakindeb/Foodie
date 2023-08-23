@@ -2,13 +2,14 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //import components
 import Username from "./components/Username"
-import Register from "./components/Register"
+//import Register from "./components/Register"
 import Profile from "./components/Profile"
 import Recovery from "./components/Recovery"
 import Reset from "./components/Reset"
 import Password from "./components/Password"
-import PageNotFound from "./components/PageNotFound"
+//import PageNotFound from "./components/PageNotFound"
 import Home from "./components/Home";
+import CreateRestaurantForm from "./components/CreateRestaurantForm";
 //create route
 const router = createBrowserRouter([
     {
@@ -16,8 +17,8 @@ const router = createBrowserRouter([
         element : <Home />
     },
     {
-        path : '/register',
-        element : <Register />
+        path : '/create',
+        element : <CreateRestaurantForm />
     },
     {
         path : '/password',
@@ -37,8 +38,8 @@ const router = createBrowserRouter([
     },
     
     {
-        path : '*',
-        element : <PageNotFound />
+        path : 'username',
+        element : <Username />
     },
 ]) 
 

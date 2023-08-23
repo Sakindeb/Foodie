@@ -15,11 +15,14 @@
     @apply border-0 px-5 py-4 rounded-xl w-3/4 shadow-sm text-lg;
     @apply focus:outline-none;
 }
-
+.button{
+    background-color: rgb(52, 108, 105);
+}
 .btn{
-    @apply border bg-blue-500 w-3/4 py-4 rounded-lg text-gray-50 text-xl shadow-sm text-center;
+    background-color: rgb(52, 108, 105);
+    @apply border  w-3/4 py-4 rounded-lg text-gray-50 text-xl shadow-sm text-center;
 }
 
 .btn:hover{
-    background-color: #1b273c;
+    background-color: rgb(52, 108, 105);
 }

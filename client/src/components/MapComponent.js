@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import styles from '../styles/MapComponent.module.css';
-import Rest from '../assets/man.png'
+import styles from '../styles/MapComponent.module.css'; // Update with your styles
+
 const containerStyle = {
   width: '100%',
-  height: '600px',
+  height: '700px',
 };
 
 const center = {
@@ -12,37 +12,18 @@ const center = {
   lng: 36.8219,
 };
 
-const restaurants = [
-  {
-    id: 1,
-    name: 'Delicious Bites',
-    lat: -1.2921,
-    lng: 36.8219,
-    image: 'https://i.roamcdn.net/hz/pi/listing-thumb-543w/225461cd9232ba7f3bf83ed1365d8df3/-/horizon-files-prod/pi/picture/qeemje9/df5f714dc040a2aa48262a907ecbb52234bc97bf.jpg',
-    details: 'A cozy restaurant offering a variety of cuisines.',
-  },
-  {
-    id: 2,
-    name: 'Savory Corner',
-    lat: -1.2950,
-    lng: 36.8225,
-    image: 'https://example.com/images/restaurant2.jpg',
-    details: 'Experience fine dining with a touch of elegance.',
-  },
-  {
-    id: 3,
-    name: 'Spice Fusion',
-    lat: -1.2915,
-    lng: 36.8195,
-    image: 'https://example.com/images/restaurant3.jpg',
-    details: 'Discover a fusion of flavors from around the world.',
-  },
-  // Add more restaurant objects here
-];
-
-
 const MapComponent = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const [restaurants, setRestaurants] = useState([]);
+
+  useEffect(() => {
+    // Fetch restaurant data from backend API
+    fetch('http://localhost:5000/restaurants')
+      .then((response) => response.json())
+      .then((data) => setRestaurants(data))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+  
 
   const handleMarkerClick = (restaurant) => {
     setSelectedRestaurant(restaurant);
@@ -79,7 +60,7 @@ const MapComponent = () => {
                   <h2>{selectedRestaurant.name}</h2>
                   <img src={selectedRestaurant.image} alt={selectedRestaurant.name} />
                   <p>{selectedRestaurant.details}</p>
-                  <button onClick={() => window.open('URL_TO_VIEW_RESTAURANT', '_blank')}>
+                  <button onClick={() => window.open('/', '_blank')}>
                     View Restaurant
                   </button>
                 </div>
@@ -93,4 +74,3 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
-
